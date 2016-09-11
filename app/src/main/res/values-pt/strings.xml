@@ -14,4 +14,8 @@
     <string name="msgSelecionar">Selecione a conversão desejada</string>
     <string name="btnLimpar">Limpar campos</string>
     <string name="btnSair">Sair do app</string>
+    <string name="dlgSair">Sair</string>
+    <string name="msgSair">Você realmente deseja sair?</string>
+    <string name="opSim">Sim</string>
+    <string name="opNao">Não</string>
 </resources>

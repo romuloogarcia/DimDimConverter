@@ -13,4 +13,8 @@
     <string name="msgSelecionar">Select the desired conversion</string>
     <string name="btnLimpar">Clean fields</string>
     <string name="btnSair">Exit the app</string>
+    <string name="dlgSair">Exit</string>
+    <string name="msgSair">Do you really want to exit?</string>
+    <string name="opSim">Yes</string>
+    <string name="opNao">No</string>
 </resources>

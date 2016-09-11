@@ -1,7 +1,9 @@
 package br.edu.pdm.dimdimconverter;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,6 +24,8 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     private EditText edtPeso;
     private ImageButton btnConverter;
     private ImageButton btnSobre;
+    private ImageButton btnLimpar;
+    private ImageButton btnSair;
     private RadioGroup rgMoeda;
 
     @Override
@@ -35,10 +39,14 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
         edtPeso = (EditText) findViewById(R.id.edtPeso);
         btnConverter = (ImageButton) findViewById(R.id.btnConverter);
         btnSobre = (ImageButton) findViewById(R.id.btnSobre);
+        btnLimpar = (ImageButton) findViewById(R.id.btnLimpar);
+        btnSair = (ImageButton) findViewById(R.id.btnSair);
         rgMoeda = (RadioGroup) findViewById(R.id.rgMoeda);
 
         btnConverter.setOnClickListener(this);
         btnSobre.setOnClickListener(this);
+        btnLimpar.setOnClickListener(this);
+        btnSair.setOnClickListener(this);
 
         edtInforme.addTextChangedListener(setWatcher(edtInforme));
         edtDolar.addTextChangedListener(setWatcher(edtDolar));
@@ -126,8 +134,34 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                 break;
             case R.id.btnSobre:
                 break;
+            case R.id.btnLimpar:
+                rgMoeda.clearCheck();
+                edtInforme.setText("");
+                edtDolar.setText("");
+                edtEuro.setText("");
+                edtPeso.setText("");
+                edtInforme.requestFocus();
+                break;
+            case R.id.btnSair:
+                sair();
+                break;
         }
 
+    }
+
+    private void sair() {
+        AlertDialog.Builder dialogoSair = new AlertDialog.Builder(this);
+        dialogoSair.setTitle(R.string.dlgSair);
+        dialogoSair.setMessage(R.string.msgSair);
+        dialogoSair.setNegativeButton(R.string.opNao, null);
+        dialogoSair.setPositiveButton(R.string.opSim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+                System.exit(0);
+            }
+        });
+        dialogoSair.show();
     }
 
 }
