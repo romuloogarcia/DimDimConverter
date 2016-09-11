@@ -1,6 +1,7 @@
 package br.edu.pdm.dimdimconverter;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -133,6 +134,9 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                 }
                 break;
             case R.id.btnSobre:
+                Intent it = new Intent(this, AboutActivity.class);
+                startActivity(it);
+                finish();
                 break;
             case R.id.btnLimpar:
                 rgMoeda.clearCheck();
