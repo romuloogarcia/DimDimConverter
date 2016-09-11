@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.text.NumberFormat;
+import java.util.Locale;
 
 public class PrincipalActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +28,7 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+        Locale.setDefault(Locale.US);
 
         edtInforme = (EditText) findViewById(R.id.edtInforme);
         edtDolar = (EditText) findViewById(R.id.edtDolar);
@@ -61,11 +63,13 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                 if (!charSequence.equals(current)) {
                     curEdt.removeTextChangedListener(this);
                     String cleanString = charSequence.toString().replaceAll("[R$,.]", "");
-                    double parsed = Double.parseDouble(cleanString);
-                    String formatted = NumberFormat.getCurrencyInstance().format((parsed / 100));
-                    current = formatted;
-                    curEdt.setText(formatted);
-                    curEdt.setSelection(formatted.length());
+                    if (!cleanString.equals("")) {
+                        double parsed = Double.parseDouble(cleanString);
+                        String formatted = NumberFormat.getCurrencyInstance().format((parsed / 100));
+                        current = formatted;
+                        curEdt.setText(formatted);
+                        curEdt.setSelection(formatted.length());
+                    }
                     curEdt.addTextChangedListener(this);
                 }
             }
@@ -83,19 +87,20 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnConverter:
                 if (edtInforme.getText().toString().trim().equals("") || edtDolar.getText().toString().trim().equals("") || edtEuro.getText().toString().trim().equals("") || edtPeso.getText().toString().trim().equals("")) {
                     Toast.makeText(this, R.string.msgVazio, Toast.LENGTH_LONG).show();
-                } else if (rgMoeda.getCheckedRadioButtonId() != -1) {
-                    Toast.makeText(this, R.string.msgSelecionar, Toast.LENGTH_LONG).show();
                 } else {
-                    switch (rgMoeda.getCheckedRadioButtonId()) {
-                        case R.id.rdDolar:
-                            break;
-                        case R.id.rdEuro:
-                            break;
-                        case R.id.rdPeso:
-                            break;
+                    if (rgMoeda.getCheckedRadioButtonId() == -1) {
+                        Toast.makeText(this, R.string.msgSelecionar, Toast.LENGTH_LONG).show();
+                    } else {
+                        switch (rgMoeda.getCheckedRadioButtonId()) {
+                            case R.id.rdDolar:
+                                break;
+                            case R.id.rdEuro:
+                                break;
+                            case R.id.rdPeso:
+                                break;
+                        }
                     }
                 }
-
                 break;
             case R.id.btnSobre:
                 break;
