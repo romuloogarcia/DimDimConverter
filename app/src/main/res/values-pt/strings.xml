@@ -12,4 +12,6 @@
     <string name="rdEuro" >€</string>
     <string name="rdPeso">$</string>
     <string name="msgSelecionar">Selecione a conversão desejada</string>
+    <string name="btnLimpar">Limpar campos</string>
+    <string name="btnSair">Sair do app</string>
 </resources>

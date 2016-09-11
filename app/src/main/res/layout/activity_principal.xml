@@ -96,4 +96,27 @@
             android:src="@drawable/about"
             android:contentDescription="@string/btnAbout" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/btnLimpar"
+            android:contentDescription="@string/btnLimpar"
+            android:src="@drawable/clean" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/btnSair"
+            android:contentDescription="@string/btnSair"
+            android:src="@drawable/exit" />
+    </LinearLayout>
 </LinearLayout>
