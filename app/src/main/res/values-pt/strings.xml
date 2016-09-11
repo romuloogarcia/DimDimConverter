@@ -18,4 +18,8 @@
     <string name="msgSair">Você realmente deseja sair?</string>
     <string name="opSim">Sim</string>
     <string name="opNao">Não</string>
+    <string name="txtDesenvolvido">Acadêmico Rômulo Augusto Oestreich Maciel Garcia</string>
+    <string name="txtView">DimDimConverter é um app que converte moedas</string>
+    <string name="txtObjetivo">Programação Android - Ciência da Computação - UNOESC 2016</string>
+    <string name="txtProfessor">Professor Roberson Junior Fernandes Alves</string>
 </resources>

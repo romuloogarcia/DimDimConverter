@@ -17,4 +17,8 @@
     <string name="msgSair">Do you really want to exit?</string>
     <string name="opSim">Yes</string>
     <string name="opNao">No</string>
+    <string name="txtDesenvolvido">Academic Rômulo Augusto Oestreich Maciel Garcia</string>
+    <string name="txtView">DimDimConverter is an app that converts currency</string>
+    <string name="txtObjetivo">Android Programming - Computer Science - UNOESC 2016</string>
+    <string name="txtProfessor">Teacher Roberson Junior Fernandes Alves</string>
 </resources>
