@@ -3,6 +3,97 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.edu.pdm.dimdimconverter.PrincipalActivity">
+    android:orientation="vertical"
+    android:weightSum="1"
+    tools:context="br.edu.pdm.dimdimconverter.PrincipalActivity"
+    android:gravity="center_vertical">
 
+    <EditText
+        android:id="@+id/edtInforme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/edtInforme"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtDolar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/edtDolar"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtEuro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/edtEuro"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/edtPeso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:ems="10"
+        android:hint="@string/edtPeso"
+        android:inputType="numberDecimal" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:id="@+id/rgMoeda">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rdDolar"
+            android:id="@+id/rdDolar"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rdEuro"
+            android:id="@+id/rdEuro"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rdPeso"
+            android:id="@+id/rdPeso"
+            android:checked="false" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <ImageButton
+            android:id="@+id/btnConverter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/convert"
+            android:contentDescription="@string/btnConvert" />
+
+        <ImageButton
+            android:id="@+id/btnSobre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/about"
+            android:contentDescription="@string/btnAbout" />
+    </LinearLayout>
 </LinearLayout>

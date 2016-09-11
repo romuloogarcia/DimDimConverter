@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">DimDimConverter</string>
+    <string name="edtInforme">Type in the value to be converted </string>
+    <string name="edtDolar">Dollar price (US$) to Real (R$)</string>
+    <string name="edtEuro">Euro price (€) to Real (R$)</string>
+    <string name="edtPeso">Peso price ($) to Real (R$)</string>
+    <string name="btnAbout">About the app</string>
+    <string name="btnConvert">Converts the value</string>
+    <string name="msgVazio">Please inform all the rates, or fill with 0,00</string>
+    <string name="rdDolar">US$</string>
+    <string name="rdEuro" >€</string>
+    <string name="rdPeso">$</string>
+    <string name="msgSelecionar">Select the desired conversion</string>
 </resources>

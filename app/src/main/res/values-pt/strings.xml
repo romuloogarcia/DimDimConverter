@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DimDimConverter</string>
+    <string name="edtInforme">Digite o valor a ser convertido</string>
+    <string name="edtDolar">Cotação de Dólar (US$) para Real (R$)</string>
+    <string name="edtEuro">Cotação do Euro (€) para Real (R$)</string>
+    <string name="edtPeso">Cotação do Peso ($) para Real (R$)</string>
+    <string name="btnAbout">Sobre o app</string>
+    <string name="btnConvert">Converte o valor</string>
+    <string name="msgVazio">Por favor, informe todas as taxas, ou complete com 0,00</string>
+    <string name="rdDolar">US$</string>
+    <string name="rdEuro" >€</string>
+    <string name="rdPeso">$</string>
+    <string name="msgSelecionar">Selecione a conversão desejada</string>
+</resources>
