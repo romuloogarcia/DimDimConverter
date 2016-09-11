@@ -11,8 +11,8 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Locale;
 
 public class PrincipalActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,7 +28,6 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        Locale.setDefault(Locale.US);
 
         edtInforme = (EditText) findViewById(R.id.edtInforme);
         edtDolar = (EditText) findViewById(R.id.edtDolar);
@@ -56,16 +55,28 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
             }
 
+            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
             String current = "";
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.equals(current)) {
                     curEdt.removeTextChangedListener(this);
-                    String cleanString = charSequence.toString().replaceAll("[R$,.]", "");
+                    String replaceable = String.format("[%s,\\s]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
+                    String cleanString = charSequence.toString().replaceAll(replaceable, "");
                     if (!cleanString.equals("")) {
-                        double parsed = Double.parseDouble(cleanString);
-                        String formatted = NumberFormat.getCurrencyInstance().format((parsed / 100));
+                        double price;
+                        try {
+                            price = Double.parseDouble(cleanString);
+                        } catch (NumberFormatException e) {
+                            price = 0;
+                        }
+
+                        int s = 1;
+                        if (!(charSequence.toString().contains("."))) {
+                            s = 100;
+                        }
+                        String formatted = currencyFormat.format((price / s));
                         current = formatted;
                         curEdt.setText(formatted);
                         curEdt.setSelection(formatted.length());
@@ -91,14 +102,25 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                     if (rgMoeda.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(this, R.string.msgSelecionar, Toast.LENGTH_LONG).show();
                     } else {
+                        double vlReal = (Double.parseDouble(edtInforme.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                        DecimalFormat df = new DecimalFormat("0.00");
                         switch (rgMoeda.getCheckedRadioButtonId()) {
                             case R.id.rdDolar:
+                                double vlDolar = (Double.parseDouble(edtDolar.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                Toast.makeText(this, "R$ " + df.format(vlReal) + " = US$ " + df.format(vlReal / vlDolar), Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.rdEuro:
+                                double vlEuro = (Double.parseDouble(edtEuro.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                Toast.makeText(this, "R$ " + df.format(vlReal) + " = € " + df.format(vlReal / vlEuro), Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.rdPeso:
+                                double vlPeso = (Double.parseDouble(edtPeso.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                Toast.makeText(this, "R$ " + df.format(vlReal) + " = $ " + df.format(vlReal / vlPeso), Toast.LENGTH_LONG).show();
                                 break;
                         }
+                        rgMoeda.clearCheck();
+                        edtInforme.setText("");
+                        edtInforme.requestFocus();
                     }
                 }
                 break;
