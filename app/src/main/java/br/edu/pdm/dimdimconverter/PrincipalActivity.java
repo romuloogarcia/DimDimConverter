@@ -8,12 +8,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
@@ -71,21 +73,17 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.equals(current)) {
                     curEdt.removeTextChangedListener(this);
-                    String replaceable = String.format("[%s,\\s]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
+                    String replaceable = String.format("[^0-9]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
                     String cleanString = charSequence.toString().replaceAll(replaceable, "");
                     if (!cleanString.equals("")) {
-                        double price;
+                        BigDecimal price;
                         try {
-                            price = Double.parseDouble(cleanString);
+                            price = new BigDecimal(cleanString).setScale(2,BigDecimal.ROUND_FLOOR).divide(new BigDecimal(100),BigDecimal.ROUND_FLOOR);
                         } catch (NumberFormatException e) {
-                            price = 0;
+                            price = new BigDecimal(0.0);
                         }
 
-                        int s = 1;
-                        if (!(charSequence.toString().contains("."))) {
-                            s = 100;
-                        }
-                        String formatted = currencyFormat.format((price / s));
+                        String formatted = NumberFormat.getCurrencyInstance().format(price);
                         current = formatted;
                         curEdt.setText(formatted);
                         curEdt.setSelection(formatted.length());
@@ -111,19 +109,19 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
                     if (rgMoeda.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(this, R.string.msgSelecionar, Toast.LENGTH_LONG).show();
                     } else {
-                        double vlReal = (Double.parseDouble(edtInforme.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                        double vlReal = (Double.parseDouble(edtInforme.getText().toString().replaceAll("[^0-9]", ""))) / 100;
                         DecimalFormat df = new DecimalFormat("0.00");
                         switch (rgMoeda.getCheckedRadioButtonId()) {
                             case R.id.rdDolar:
-                                double vlDolar = (Double.parseDouble(edtDolar.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                double vlDolar = (Double.parseDouble(edtDolar.getText().toString().replaceAll("[^0-9]", ""))) / 100;
                                 Toast.makeText(this, "R$ " + df.format(vlReal) + " = US$ " + df.format(vlReal / vlDolar), Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.rdEuro:
-                                double vlEuro = (Double.parseDouble(edtEuro.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                double vlEuro = (Double.parseDouble(edtEuro.getText().toString().replaceAll("[^0-9]", ""))) / 100;
                                 Toast.makeText(this, "R$ " + df.format(vlReal) + " = € " + df.format(vlReal / vlEuro), Toast.LENGTH_LONG).show();
                                 break;
                             case R.id.rdPeso:
-                                double vlPeso = (Double.parseDouble(edtPeso.getText().toString().replaceAll("[^\\d.]", ""))) / 100;
+                                double vlPeso = (Double.parseDouble(edtPeso.getText().toString().replaceAll("[^0-9]", ""))) / 100;
                                 Toast.makeText(this, "R$ " + df.format(vlReal) + " = $ " + df.format(vlReal / vlPeso), Toast.LENGTH_LONG).show();
                                 break;
                         }
