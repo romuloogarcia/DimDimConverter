@@ -66,15 +66,13 @@ public class PrincipalActivity extends AppCompatActivity implements View.OnClick
 
             }
 
-            NumberFormat currencyFormat = NumberFormat.getCurrencyInstance();
             String current = "";
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (!charSequence.equals(current)) {
                     curEdt.removeTextChangedListener(this);
-                    String replaceable = String.format("[^0-9]", NumberFormat.getCurrencyInstance().getCurrency().getSymbol());
-                    String cleanString = charSequence.toString().replaceAll(replaceable, "");
+                    String cleanString = charSequence.toString().replaceAll("[^0-9]", "");
                     if (!cleanString.equals("")) {
                         BigDecimal price;
                         try {
